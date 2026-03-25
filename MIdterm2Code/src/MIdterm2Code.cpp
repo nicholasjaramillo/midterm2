@@ -18,6 +18,7 @@
 
 SYSTEM_MODE(AUTOMATIC);
 
+// declaration 
 String dateTime, timeOnly;
 unsigned int lastTime;
 const int OLED_RESET=-1;
@@ -47,10 +48,12 @@ Adafruit_SSD1306 display(OLED_RESET);
 Adafruit_BME280 bme; 
 TCPClient TheClient; 
 Adafruit_MQTT_SPARK mqtt(&TheClient,AIO_SERVER,AIO_SERVERPORT,AIO_USERNAME,AIO_KEY); 
+// my subs and pubs
+
 Adafruit_MQTT_Publish pubFeed = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/temp");
 Adafruit_MQTT_Publish pubFeedd = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/dust");
 Adafruit_MQTT_Publish pubFeeddd = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/moister");
-
+Adafruit_MQTT_Subscribe subFeed = Adafruit_MQTT_Subscribe (& mqtt , AIO_USERNAME "/feeds/waterButton");
 
 void setup() {
 Serial.begin (9600);
